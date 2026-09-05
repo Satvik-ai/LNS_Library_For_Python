@@ -114,7 +114,7 @@ python3 -m venv venv
 source venv/bin/activate      # on Windows: venv\Scripts\activate
 pip install -r requirements.txt
 pip install -e . # or add the repo root to your `PYTHONPATH` / `sys.path`
-python -c "from lns_lib import LNS16, LNS8; print(LNS16, LNS8)"
+python -c "from lns_lib import LNS16, LNS8; print(LNS16, LNS8)" # Verify the install
 ```
 
 ## 6. Usage
