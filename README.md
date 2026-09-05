@@ -60,6 +60,11 @@ is never reconstructed mid-computation.
   bits XORed. This is **exact** in the log domain (the only error is the quantization
   already present in `a` and `b` from conversion). Used for weight/activation products
   in convolution and fully-connected layers.
+* **`lns_mac(a, b, acc)`** -- multiply-accumulate, defined as
+  `lns_add(lns_multiply(a, b), acc)`, chained entirely in the log domain. This is the
+  workhorse of DNN inference: a convolution or fully-connected layer is a long chain of
+  MACs, so its accuracy is governed by the exact-multiply / approximate-add trade-off
+  described above, repeated once per accumulation step.
 * **`lns_divide(a, b)`** -- division as log-subtraction: `log2(a/b) = log2(a) -
   log2(b)`, computed as a single integer subtract of the magnitude codes, sign bits
   XORed. Also **exact** given the inputs' existing quantization. Division by zero
